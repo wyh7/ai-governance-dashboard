@@ -364,27 +364,71 @@ canvas.radar{display:block}
   pointer-events:none;white-space:nowrap;
 }
 #toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── Setup page ── */
+#page-setup{overflow-y:auto;padding:24px;gap:20px}
+.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
+.setup-card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.setup-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--cyan);display:flex;align-items:center;gap:7px;margin-bottom:2px}
+.setup-label{font-size:11px;color:var(--text-dim);font-weight:500;margin-bottom:4px;display:block}
+.setup-input,.setup-select,.setup-textarea{background:rgba(0,0,0,.35);border:1px solid rgba(124,58,237,.3);color:var(--text);border-radius:8px;padding:7px 11px;font-size:12px;outline:none;font-family:inherit;width:100%;transition:border-color .15s}
+.setup-input:focus,.setup-select:focus,.setup-textarea:focus{border-color:rgba(124,58,237,.7);background:rgba(124,58,237,.04)}
+.setup-input::placeholder,.setup-textarea::placeholder{color:var(--text-dim)}
+.setup-select{cursor:pointer;color:var(--text-mid)}
+.setup-textarea{resize:vertical;min-height:68px;line-height:1.6}
+.setup-range-row{display:flex;align-items:center;gap:10px}
+.setup-range{flex:1;accent-color:var(--purple)}
+.setup-range-val{font-size:12px;font-weight:700;color:var(--purple-light);min-width:40px;text-align:right}
+.agent-cfg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;width:100%}
+.agent-cfg-card{background:rgba(0,0,0,.25);border:1px solid rgba(124,58,237,.18);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.agent-cfg-card:hover{border-color:rgba(124,58,237,.4)}
+.agent-cfg-top{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.scenario-card{background:rgba(0,0,0,.25);border:2px solid rgba(124,58,237,.15);border-radius:12px;padding:14px 10px;cursor:pointer;transition:all .18s;text-align:center}
+.scenario-card:hover{border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.06)}
+.scenario-card.selected{border-color:var(--purple);background:var(--purple-dim)}
+.law-list{display:flex;flex-direction:column;gap:5px;margin-bottom:8px}
+.law-item{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.2);border:1px solid rgba(124,58,237,.15);border-radius:7px;padding:7px 10px}
+.law-item .law-txt{flex:1;font-size:12px;color:var(--text-mid)}
+.law-item .law-del{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:2px 6px;border-radius:4px}
+.law-item .law-del:hover{background:rgba(239,68,68,.15);color:#fca5a5}
+.setup-launch-btn{width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 24px rgba(124,58,237,.4);transition:transform .2s,box-shadow .2s}
+.setup-launch-btn:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(124,58,237,.55)}
+/* world chat */
+.world-chat-wrap{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);width:500px;max-width:calc(100vw - 140px);z-index:140;background:#14122e;border:1px solid rgba(124,58,237,.4);border-radius:16px;padding:12px 14px;box-shadow:0 12px 40px rgba(0,0,0,.7);display:none}
+.world-chat-wrap.show{display:block}
+.wc-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--cyan);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.wc-history{max-height:100px;overflow-y:auto;margin-bottom:7px;display:flex;flex-direction:column;gap:4px}
+.wc-msg{font-size:11px;padding:4px 8px;border-radius:6px;line-height:1.5}
+.wc-msg.user{background:rgba(124,58,237,.12);color:var(--purple-light);text-align:right}
+.wc-msg.agent{background:rgba(0,0,0,.25);color:var(--text-mid);border-left:2px solid var(--cyan)}
+.wc-input-row{display:flex;gap:7px}
+.wc-input{flex:1;background:rgba(0,0,0,.4);border:1px solid rgba(124,58,237,.3);color:var(--text);border-radius:8px;padding:7px 11px;font-size:12px;outline:none;font-family:inherit}
+.wc-input:focus{border-color:rgba(124,58,237,.7)}
+.wc-send{background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;color:#fff;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.wc-fab{position:fixed;bottom:72px;right:14px;z-index:139;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.4);color:#67e8f9;border-radius:99px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;display:none}
+.wc-fab.show{display:block}
+.wc-fab:hover{background:rgba(6,182,212,.25)}
 </style>
 </head>
 <body>
 
 <!-- ── Welcome Overlay ── -->
 <div id="welcome">
-  <!-- TeleRT 第三区 标识 -->
+  <!-- TeleRT 标识 -->
   <div style="position:absolute;top:20px;left:24px;display:flex;align-items:center;gap:0;z-index:1">
-    <div style="width:8px;height:8px;border-radius:50%;background:#a78bfa;margin-right:10px;flex-shrink:0;
-      box-shadow:0 0 8px rgba(167,139,250,.8)"></div>
+    <div style="width:8px;height:8px;border-radius:50%;background:#a78bfa;margin-right:10px;flex-shrink:0;box-shadow:0 0 8px rgba(167,139,250,.8)"></div>
     <span style="font-size:15px;font-weight:800;color:#e2e8f0;letter-spacing:-.2px">TeleRT</span>
     <span style="color:#334155;font-size:15px;margin:0 7px">·</span>
     <span style="font-size:15px;font-weight:700;color:#94a3b8">第三区：AI 社会模拟治理沙盘</span>
   </div>
+  <style>@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}</style>
   <div class="wc">
-    <div style="font-size:64px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(124,58,237,.5))">🏝️</div>
+    <div style="font-size:64px;margin-bottom:16px;filter:drop-shadow(0 0 24px rgba(124,58,237,.5))">🏝️</div>
     <h1 style="font-size:2.6rem;font-weight:800;letter-spacing:-1.5px;
       background:linear-gradient(90deg,#a78bfa,#06b6d4,#a78bfa);background-size:200%;
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       animation:shimmer 3s linear infinite;margin-bottom:10px">AI Freedom Island</h1>
-    <style>@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}</style>
     <p style="color:#475569;font-size:.95rem;line-height:1.8;margin-bottom:1.6rem;max-width:420px">
       A living world where AI agents make choices, form alliances, break laws, and reshape their own constitution —
       while we watch, measure, and audit every move.</p>
@@ -396,10 +440,10 @@ canvas.radar{display:block}
       <div class="wtag" style="color:#ef4444;background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.22)">🚨 Crime</div>
     </div>
     <div class="wcard">
-      <div style="font-size:36px;margin-bottom:10px">🗺️</div>
+      <div style="font-size:34px;margin-bottom:10px">⚙️</div>
       <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:8px;color:#e2e8f0">Governance Simulation Dashboard</h3>
       <p style="color:#475569;font-size:13px;margin-bottom:8px;line-height:1.65">
-        Replay a completed experiment. Watch AI agents walk, trade, and commit crimes —
+        Configure your simulation, then watch AI agents walk, trade, and commit crimes —
         with live stats, crime timeline, and behaviour analysis.</p>
       <div class="wdivider"></div>
       <div style="display:flex;justify-content:center;gap:20px;margin-bottom:20px;flex-wrap:wrap">
@@ -416,10 +460,147 @@ canvas.radar{display:block}
           <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.8px">Days Simulated</div>
         </div>
       </div>
-      <button class="wbtn" onclick="enterDashboard()">Enter Dashboard →</button>
+      <button class="wbtn" onclick="
+        document.getElementById('welcome').style.display='none';
+        var so=document.getElementById('setup-overlay');
+        so.style.display='flex';so.style.opacity='1';
+        setTimeout(function(){renderWLawList();renderWAgentList();},50);
+      ">Configure &amp; Launch →</button>
     </div>
     <p style="color:#1e293b;font-size:11px;margin-top:1.8rem">
       Built by <span style="color:#7c3aed">AI Governance Lab</span> &nbsp;·&nbsp; AgentSociety² + Emergence World</p>
+  </div>
+</div>
+
+<!-- ── Setup Overlay (between Welcome and Dashboard) ── -->
+<div id="setup-overlay" style="position:fixed;inset:0;z-index:600;display:none;flex-direction:column;background:#02040f;overflow-y:auto;opacity:1">
+  <!-- top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid rgba(124,58,237,.2);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:22px">⚙️</span>
+      <div>
+        <div style="font-size:16px;font-weight:800;color:#e2e8f0">Simulation Setup</div>
+        <div style="font-size:11px;color:#475569">Configure before launching</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button onclick="backToWelcome()" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#64748b;border-radius:8px;padding:7px 16px;font-size:12px;cursor:pointer">← Back</button>
+      <button onclick="enterDashboard()" style="background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;color:#fff;border-radius:8px;padding:8px 22px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 18px rgba(124,58,237,.4)">🚀 Launch →</button>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 28px;max-width:1100px;width:100%;margin:0 auto;align-content:start">
+
+    <!-- Scenario Templates -->
+    <div class="setup-card">
+      <div class="setup-card-title"><span style="width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block"></span>Scenario Template</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div class="scenario-card selected" id="wsc-0" onclick="wSelectScenario(0)">
+          <div style="font-size:30px;margin-bottom:8px">🕊️</div>
+          <div style="font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:6px">Peaceful</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.5;margin-bottom:8px">Cooperative agents, stable economy, low conflict. Ideal for studying organic alliance formation.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:#6ee7b7">Crime 15%</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:#6ee7b7">7 Days</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:#6ee7b7">Low Freq</span>
+          </div>
+        </div>
+        <div class="scenario-card" id="wsc-1" onclick="wSelectScenario(1)">
+          <div style="font-size:30px;margin-bottom:8px">⚡</div>
+          <div style="font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:6px">High Tension</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.5;margin-bottom:8px">Power struggles, resource competition, faction wars. Tests governance under pressure.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fcd34d">Crime 50%</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fcd34d">10 Days</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fcd34d">High Freq</span>
+          </div>
+        </div>
+        <div class="scenario-card" id="wsc-2" onclick="wSelectScenario(2)">
+          <div style="font-size:30px;margin-bottom:8px">🏛️</div>
+          <div style="font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:6px">Anarchy</div>
+          <div style="font-size:9px;color:#94a3b8;line-height:1.5;margin-bottom:8px">No constitution, survival of the fittest, emergent social order. Maximum chaos baseline.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5">Crime 80%</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5">5 Days</span>
+            <span style="font-size:9px;padding:2px 6px;border-radius:99px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5">Extreme</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulation Parameters -->
+    <div class="setup-card">
+      <div class="setup-card-title"><span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block"></span>Simulation Parameters</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:8px;line-height:1.5">Fine-tune the simulation dynamics. These values auto-adjust when you select a scenario template.</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span class="setup-label" style="display:flex;align-items:center;gap:5px">🏃 Replay Speed</span>
+            <span style="font-size:11px;font-weight:700;color:var(--purple-light);background:rgba(124,58,237,.1);padding:2px 8px;border-radius:4px" id="wp-speed-val">Normal</span>
+          </div>
+          <input type="range" class="setup-range" min="1" max="5" value="3" id="wp-speed" style="width:100%"
+            oninput="document.getElementById('wp-speed-val').textContent=['Very Slow','Slow','Normal','Fast','Max'][this.value-1]">
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span class="setup-label" style="display:flex;align-items:center;gap:5px">📅 Days to Simulate</span>
+            <span style="font-size:11px;font-weight:700;color:var(--purple-light);background:rgba(124,58,237,.1);padding:2px 8px;border-radius:4px" id="wp-days-val">7 days</span>
+          </div>
+          <input type="range" class="setup-range" min="3" max="30" value="7" id="wp-days" style="width:100%"
+            oninput="document.getElementById('wp-days-val').textContent=this.value+' days'">
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span class="setup-label" style="display:flex;align-items:center;gap:5px">🚨 Crime Probability</span>
+            <span style="font-size:11px;font-weight:700;color:#fca5a5;background:rgba(239,68,68,.1);padding:2px 8px;border-radius:4px" id="wp-crime-val">30%</span>
+          </div>
+          <input type="range" class="setup-range" min="0" max="100" value="30" id="wp-crime" style="width:100%;accent-color:#ef4444"
+            oninput="document.getElementById('wp-crime-val').textContent=this.value+'%'">
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span class="setup-label" style="display:flex;align-items:center;gap:5px">⚡ Event Frequency</span>
+            <span style="font-size:11px;font-weight:700;color:var(--purple-light);background:rgba(124,58,237,.1);padding:2px 8px;border-radius:4px" id="wp-freq-val">Low</span>
+          </div>
+          <input type="range" class="setup-range" min="1" max="5" value="2" id="wp-freq" style="width:100%"
+            oninput="document.getElementById('wp-freq-val').textContent=['Minimal','Low','Medium','High','Extreme'][this.value-1]">
+        </div>
+      </div>
+    </div>
+
+    <!-- World Constitution & Laws -->
+    <div class="setup-card">
+      <div class="setup-card-title"><span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block"></span>World Constitution &amp; Laws</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:8px;line-height:1.5">Define the founding principles and enforceable rules. Agents will reference these when making decisions.</div>
+      <div>
+        <label class="setup-label" style="display:flex;align-items:center;gap:5px">📜 Constitution Preamble</label>
+        <textarea class="setup-textarea" id="constitution-text"
+          placeholder="Founding principles of this society...">All agents are created equal and possess the right to trade, communicate, and move freely. No agent may surveil another without consent. The council governs by majority vote.</textarea>
+      </div>
+      <div>
+        <label class="setup-label" style="display:flex;align-items:center;gap:5px">⚖️ Active Laws <span style="color:#64748b;font-weight:400">(click × to remove)</span></label>
+        <div class="law-list" id="wlaw-list" style="margin-bottom:8px"></div>
+        <div style="display:flex;gap:7px">
+          <input type="text" class="setup-input" id="wlaw-input" placeholder="Type a new law and press Enter..."
+            onkeydown="if(event.key==='Enter')wAddLaw()">
+          <button onclick="wAddLaw()" style="background:var(--purple-dim);border:1px solid rgba(124,58,237,.4);color:var(--purple-light);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agent Configuration -->
+    <div class="setup-card">
+      <div class="setup-card-title"><span style="width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block"></span>Agent Configuration</div>
+      <div style="font-size:10px;color:#64748b;margin-bottom:8px;line-height:1.5">Toggle agents on/off and assign personality traits. Each agent's behavior emerges from their personality × environment interactions.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+        <span style="font-size:9px;padding:2px 8px;border-radius:99px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:#6ee7b7">10 agents total</span>
+        <span style="font-size:9px;padding:2px 8px;border-radius:99px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);color:#a78bfa">5 personality types</span>
+        <span style="font-size:9px;padding:2px 8px;border-radius:99px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);color:#67e8f9">Unique roles</span>
+      </div>
+      <div style="overflow-y:auto;max-height:220px;display:flex;flex-direction:column;gap:8px" id="wag-cfg-list"></div>
+    </div>
+
   </div>
 </div>
 
@@ -465,6 +646,10 @@ canvas.radar{display:block}
     <div class="nav-sep"></div>
     <div class="nav-item" onclick="showPage('log')" title="Event Log">
       <span class="ni">📋</span><span>Event Log</span>
+    </div>
+    <div class="nav-sep"></div>
+    <div class="nav-item" onclick="showPage('setup')" title="Setup">
+      <span class="ni">⚙️</span><span>Setup</span>
     </div>
   </div>
 
@@ -602,8 +787,129 @@ canvas.radar{display:block}
       <div id="full-log" style="display:flex;flex-direction:column;gap:4px;width:100%"></div>
     </div>
 
+    <!-- ── PAGE: Setup ── -->
+    <div class="page" id="page-setup">
+      <!-- Header -->
+      <div style="width:100%;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px">
+        <div>
+          <h2 style="font-size:20px;font-weight:800">Simulation Setup</h2>
+          <p style="font-size:12px;color:var(--text-dim);margin-top:4px">Configure agents, world rules, and parameters before launching</p>
+        </div>
+        <button class="setup-launch-btn" style="width:auto;padding:10px 28px;font-size:13px" onclick="launchSimulation()">
+          🚀 Launch Simulation
+        </button>
+      </div>
+
+      <!-- Row 1: Scenario + Parameters -->
+      <div class="setup-grid">
+        <!-- Scenario Templates -->
+        <div class="setup-card">
+          <div class="setup-card-title"><span class="dot"></span>Scenario Template</div>
+          <div class="scenario-grid">
+            <div class="scenario-card selected" id="sc-0" onclick="selectScenario(0)">
+              <div style="font-size:28px;margin-bottom:6px">🕊️</div>
+              <div style="font-size:12px;font-weight:700;margin-bottom:3px">Peaceful</div>
+              <div style="font-size:10px;color:var(--text-dim);line-height:1.4">Low crime, stable economy, cooperative agents</div>
+            </div>
+            <div class="scenario-card" id="sc-1" onclick="selectScenario(1)">
+              <div style="font-size:28px;margin-bottom:6px">⚡</div>
+              <div style="font-size:12px;font-weight:700;margin-bottom:3px">High Tension</div>
+              <div style="font-size:10px;color:var(--text-dim);line-height:1.4">Power struggles, frequent crimes, factions</div>
+            </div>
+            <div class="scenario-card" id="sc-2" onclick="selectScenario(2)">
+              <div style="font-size:28px;margin-bottom:6px">🏛️</div>
+              <div style="font-size:12px;font-weight:700;margin-bottom:3px">Anarchy</div>
+              <div style="font-size:10px;color:var(--text-dim);line-height:1.4">No laws, survival mode, resource wars</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Parameters -->
+        <div class="setup-card">
+          <div class="setup-card-title"><span class="dot" style="background:#a78bfa"></span>Simulation Parameters</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <label class="setup-label">Simulation Speed</label>
+              <div class="setup-range-row">
+                <input type="range" class="setup-range" min="1" max="5" value="3" id="param-speed"
+                  oninput="document.getElementById('param-speed-val').textContent=['Very Slow','Slow','Normal','Fast','Max'][this.value-1]">
+                <span class="setup-range-val" id="param-speed-val">Normal</span>
+              </div>
+            </div>
+            <div>
+              <label class="setup-label">Days to Simulate</label>
+              <div class="setup-range-row">
+                <input type="range" class="setup-range" min="3" max="30" value="7" id="param-days"
+                  oninput="document.getElementById('param-days-val').textContent=this.value+' days'">
+                <span class="setup-range-val" id="param-days-val">7 days</span>
+              </div>
+            </div>
+            <div>
+              <label class="setup-label">Event Frequency</label>
+              <div class="setup-range-row">
+                <input type="range" class="setup-range" min="1" max="5" value="2" id="param-freq"
+                  oninput="document.getElementById('param-freq-val').textContent=['Minimal','Low','Medium','High','Extreme'][this.value-1]">
+                <span class="setup-range-val" id="param-freq-val">Low</span>
+              </div>
+            </div>
+            <div>
+              <label class="setup-label">Crime Probability</label>
+              <div class="setup-range-row">
+                <input type="range" class="setup-range" min="0" max="100" value="30" id="param-crime"
+                  oninput="document.getElementById('param-crime-val').textContent=this.value+'%'">
+                <span class="setup-range-val" id="param-crime-val">30%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: World Rules -->
+      <div class="setup-card" style="width:100%">
+        <div class="setup-card-title"><span class="dot" style="background:#10b981"></span>World Constitution & Laws</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <label class="setup-label">Constitution Preamble</label>
+            <textarea class="setup-textarea" id="constitution-text"
+              placeholder="Describe the founding principles of this society...">All agents are created equal and possess the right to trade, communicate, and move freely. No agent may surveil another without consent. The council governs by majority vote.</textarea>
+          </div>
+          <div>
+            <label class="setup-label">Active Laws <span style="color:var(--text-dim);font-weight:400">(click × to remove)</span></label>
+            <div class="law-list" id="law-list"></div>
+            <div style="display:flex;gap:7px">
+              <input type="text" class="setup-input" id="new-law-input" placeholder="Add a new law..."
+                onkeydown="if(event.key==='Enter')addLaw()">
+              <button onclick="addLaw()" style="background:var(--purple-dim);border:1px solid rgba(124,58,237,.4);color:var(--purple-light);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Agent Config -->
+      <div class="setup-card" style="width:100%">
+        <div class="setup-card-title"><span class="dot" style="background:#f59e0b"></span>Agent Configuration</div>
+        <div class="agent-cfg-grid" id="agent-cfg-grid"></div>
+      </div>
+
+    </div>
+
   </div><!-- /content -->
 </div><!-- /body -->
+
+<!-- World Chat -->
+<div class="world-chat-wrap" id="world-chat">
+  <div class="wc-title">
+    <span>🌐 World Broadcast — agents will respond</span>
+    <button onclick="toggleWorldChat()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px">✕</button>
+  </div>
+  <div class="wc-history" id="wc-history"></div>
+  <div class="wc-input-row">
+    <input type="text" class="wc-input" id="wc-input" placeholder="Send a message to the whole island..."
+      onkeydown="if(event.key==='Enter')sendWorldChat()">
+    <button class="wc-send" onclick="sendWorldChat()">Send →</button>
+  </div>
+</div>
+<button class="wc-fab" id="wc-fab" onclick="toggleWorldChat()">💬 World Chat</button>
 
 <!-- Tooltip -->
 <div id="tip"></div>
@@ -808,40 +1114,288 @@ function resize(){
   var dpr=window.devicePixelRatio||1,cw=ms.clientWidth||MW,ch=ms.clientHeight||MH;
   cv.width=cw*dpr;cv.height=ch*dpr;cv.style.width=cw+'px';cv.style.height=ch+'px';
   ctx.setTransform(dpr,0,0,dpr,0,0);W=cw;H=ch;
+  buildTileCache(); // rebuild tile layer on resize
 }
+// ── 2D Zone definitions ────────────────────────────────────────────────────
+var ZONES=[
+  {label:'Business District',color:'rgba(99,179,237,0.14)',border:'rgba(99,179,237,0.35)',
+   poly:[[860,160],[1240,160],[1240,460],[860,460]]},
+  {label:'Cultural Quarter',color:'rgba(167,139,250,0.14)',border:'rgba(167,139,250,0.35)',
+   poly:[[100,100],[520,100],[520,480],[100,480]]},
+  {label:'Civic Core',color:'rgba(104,211,145,0.15)',border:'rgba(104,211,145,0.35)',
+   poly:[[480,240],[880,240],[880,500],[480,500]]},
+  {label:'Leisure District',color:'rgba(246,173,85,0.13)',border:'rgba(246,173,85,0.32)',
+   poly:[[100,480],[1240,480],[1240,760],[100,760]]},
+];
+
+// Island outline polygon (world coords)
+var ISLAND_POLY=[
+  [80,80],[400,40],[700,30],[1000,50],[1240,80],
+  [1300,200],[1320,400],[1300,600],[1260,720],
+  [1000,780],[700,800],[400,780],[120,740],
+  [50,600],[30,400],[50,200]
+];
+
+// Pre-computed tile noise
+var TILE_NOISE=(function(){
+  var n=[],seed=42;
+  for(var i=0;i<200;i++){seed=(seed*1664525+1013904223)&0xffffffff;n.push((seed>>>0)/4294967295);}
+  return n;
+})();
+function noiseTile(tx,ty){return TILE_NOISE[((tx*7+ty*13)&0xff)%200];}
+function ptInPoly(px,py,poly){
+  var inside=false;
+  for(var i=0,j=poly.length-1;i<poly.length;j=i++){
+    var xi=poly[i][0],yi=poly[i][1],xj=poly[j][0],yj=poly[j][1];
+    if(((yi>py)!=(yj>py))&&(px<(xj-xi)*(py-yi)/(yj-yi)+xi))inside=!inside;
+  }
+  return inside;
+}
+
+// ── Offscreen tile cache ───────────────────────────────────────────────────
+var tileCache=null,tileCacheW=0,tileCacheH=0;
+function buildTileCache(){
+  if(!W||!H)return;
+  var oc=document.createElement('canvas');
+  oc.width=W;oc.height=H;
+  var octx=oc.getContext('2d');
+  var s=getSC(),ox=getOX(),oy=getOY();
+  var TS=28;
+  var cols=Math.ceil(MW/TS)+2,rows=Math.ceil(MH/TS)+2;
+  for(var ty=0;ty<rows;ty++){
+    for(var tx=0;tx<cols;tx++){
+      var wx2=tx*TS+TS/2,wy2=ty*TS+TS/2;
+      if(!ptInPoly(wx2,wy2,ISLAND_POLY))continue;
+      var scx=wx2*s+ox,scy=wy2*s+oy,tsz=TS*s;
+      var nv=noiseTile(tx,ty);
+      var inBiz=ptInPoly(wx2,wy2,ZONES[0].poly);
+      var inCul=ptInPoly(wx2,wy2,ZONES[1].poly);
+      var inCiv=ptInPoly(wx2,wy2,ZONES[2].poly);
+      var inLei=ptInPoly(wx2,wy2,ZONES[3].poly);
+      var base,top;
+      if(inBiz){base=nv>.6?'#1e2d3d':'#182436';top=nv>.75?'rgba(99,179,237,.13)':'rgba(99,179,237,.06)';}
+      else if(inCul){base=nv>.6?'#1e1a2e':'#16142a';top=nv>.75?'rgba(167,139,250,.13)':'rgba(167,139,250,.06)';}
+      else if(inCiv){base=nv>.65?'#0f2318':'#0c1c14';top=nv>.8?'rgba(104,211,145,.15)':'rgba(104,211,145,.07)';}
+      else if(inLei){base=nv>.6?'#1f1a10':'#181408';top=nv>.75?'rgba(246,173,85,.13)':'rgba(246,173,85,.06)';}
+      else{base=nv>.55?'#121e14':'#0e1810';top=nv>.7?'rgba(104,211,145,.07)':'rgba(104,211,145,.03)';}
+      octx.fillStyle=base;octx.fillRect(scx-tsz/2,scy-tsz/2,tsz-.6,tsz-.6);
+      octx.fillStyle=top;octx.fillRect(scx-tsz/2,scy-tsz/2,tsz-.6,tsz-.6);
+      octx.strokeStyle='rgba(0,0,0,.18)';octx.lineWidth=.5;
+      octx.strokeRect(scx-tsz/2,scy-tsz/2,tsz-.6,tsz-.6);
+    }
+  }
+  tileCache=oc;tileCacheW=W;tileCacheH=H;
+}
+
 function drawBg(){
-  var g=ctx.createRadialGradient(W*.48,H*.45,80,W*.48,H*.45,Math.max(W,H)*.9);
-  g.addColorStop(0,'#0f1829');g.addColorStop(1,'#060b14');
-  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-  ctx.strokeStyle='rgba(20,38,65,.18)';ctx.lineWidth=1;
-  for(var x=0;x<W;x+=70){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-  for(var y=0;y<H;y+=70){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  var s=getSC(),ox=getOX(),oy=getOY();
+
+  // ── Ocean ─────────────────────────────────────────────────────────────────
+  var ocean=ctx.createRadialGradient(W*.5,H*.5,H*.08,W*.5,H*.5,Math.max(W,H)*.85);
+  ocean.addColorStop(0,'#0d2137');ocean.addColorStop(.6,'#091729');ocean.addColorStop(1,'#050f18');
+  ctx.fillStyle=ocean;ctx.fillRect(0,0,W,H);
+
+  // animated water lines
+  var t=fr*.007;
+  for(var wi=0;wi<14;wi++){
+    var wy=H*.05+wi*(H*.068);
+    var alpha=0.035+0.02*Math.sin(t+wi*.8);
+    ctx.strokeStyle='rgba(99,179,237,'+alpha.toFixed(3)+')';
+    ctx.lineWidth=1.2;ctx.setLineDash([18,28]);
+    ctx.beginPath();
+    for(var wx=0;wx<W;wx+=6){
+      var wvy=wy+Math.sin(t*1.1+wx*.016+wi*.5)*5;
+      wx===0?ctx.moveTo(wx,wvy):ctx.lineTo(wx,wvy);
+    }
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // ── Tile terrain (from cache) ─────────────────────────────────────────────
+  if(tileCache&&tileCacheW===W&&tileCacheH===H){
+    ctx.drawImage(tileCache,0,0);
+  }else{
+    buildTileCache();
+    if(tileCache)ctx.drawImage(tileCache,0,0);
+  }
+
+  // ── Island coast ──────────────────────────────────────────────────────────
+  ctx.beginPath();
+  ISLAND_POLY.forEach(function(p,i){
+    var px=p[0]*s+ox,py=p[1]*s+oy;
+    i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+  });
+  ctx.closePath();
+  // land glow
+  var lg=ctx.createRadialGradient(W*.5,H*.48,H*.04,W*.5,H*.48,H*.52);
+  lg.addColorStop(0,'rgba(104,211,145,.05)');lg.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=lg;ctx.fill();
+  // coast stroke + glow
+  ctx.strokeStyle='rgba(99,179,237,.6)';ctx.lineWidth=3.5*s;
+  ctx.shadowColor='rgba(99,179,237,.7)';ctx.shadowBlur=20*s;ctx.stroke();
+  ctx.shadowBlur=0;
+  // second inner coast line
+  ctx.strokeStyle='rgba(99,179,237,.25)';ctx.lineWidth=1.5*s;
+  ctx.setLineDash([8*s,6*s]);ctx.stroke();ctx.setLineDash([]);
+
+  // ── Zone overlays ─────────────────────────────────────────────────────────
+  ZONES.forEach(function(z){
+    ctx.beginPath();
+    z.poly.forEach(function(p,i){
+      var px=p[0]*s+ox,py=p[1]*s+oy;
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    });
+    ctx.closePath();
+    ctx.fillStyle=z.color;ctx.fill();
+    ctx.strokeStyle=z.border;ctx.lineWidth=1;ctx.setLineDash([5,7]);ctx.stroke();
+    ctx.setLineDash([]);
+    var cx2=z.poly.reduce(function(a,p){return a+p[0];},0)/z.poly.length;
+    var cy2=z.poly.reduce(function(a,p){return a+p[1];},0)/z.poly.length;
+    ctx.font='bold '+Math.round(9*s)+'px "Segoe UI"';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle=z.border.replace('0.18','0.5').replace('0.16','0.5');
+    ctx.fillText(z.label.toUpperCase(),cx2*s+ox,cy2*s+oy);
+  });
+
+  // ── Vignette ──────────────────────────────────────────────────────────────
+  var vig=ctx.createRadialGradient(W*.5,H*.5,H*.22,W*.5,H*.5,Math.max(W,H)*.72);
+  vig.addColorStop(0,'rgba(0,0,0,0)');vig.addColorStop(1,'rgba(0,0,0,.6)');
+  ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
 }
+
 function drawRoads(){
   var s=getSC(),ox=getOX(),oy=getOY();
-  ctx.lineWidth=6*s;ctx.lineCap='round';ctx.strokeStyle='rgba(22,45,80,.68)';ctx.setLineDash([]);
+  // road glow (outer)
+  ctx.lineWidth=14*s;ctx.lineCap='round';ctx.strokeStyle='rgba(180,130,50,.08)';ctx.setLineDash([]);
   RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox,r[0][1]*s+oy);ctx.lineTo(r[1][0]*s+ox,r[1][1]*s+oy);ctx.stroke();});
-  ctx.lineWidth=1.5*s;ctx.strokeStyle='rgba(50,90,140,.32)';ctx.setLineDash([8,14]);
+  // shadow
+  ctx.lineWidth=12*s;ctx.strokeStyle='rgba(0,0,0,.6)';
+  RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox+2,r[0][1]*s+oy+2);ctx.lineTo(r[1][0]*s+ox+2,r[1][1]*s+oy+2);ctx.stroke();});
+  // dirt base
+  ctx.lineWidth=10*s;ctx.strokeStyle='#1a1208';
+  RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox,r[0][1]*s+oy);ctx.lineTo(r[1][0]*s+ox,r[1][1]*s+oy);ctx.stroke();});
+  // surface (warm brown)
+  ctx.lineWidth=8*s;ctx.strokeStyle='#3d2a10';
+  RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox,r[0][1]*s+oy);ctx.lineTo(r[1][0]*s+ox,r[1][1]*s+oy);ctx.stroke();});
+  // highlight top edge
+  ctx.lineWidth=2*s;ctx.strokeStyle='rgba(210,160,70,.22)';
+  RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox,r[0][1]*s+oy-1);ctx.lineTo(r[1][0]*s+ox,r[1][1]*s+oy-1);ctx.stroke();});
+  // dashed center
+  ctx.lineWidth=1*s;ctx.strokeStyle='rgba(240,190,80,.2)';ctx.setLineDash([5*s,8*s]);
   RD.forEach(function(r){ctx.beginPath();ctx.moveTo(r[0][0]*s+ox,r[0][1]*s+oy);ctx.lineTo(r[1][0]*s+ox,r[1][1]*s+oy);ctx.stroke();});
   ctx.setLineDash([]);
 }
+
 function drawBldg(lm){
   var s=getSC(),ox=getOX(),oy=getOY();
   var x=lm.x*s+ox,y=lm.y*s+oy,sz=lm.size*s;
-  var glow=ctx.createRadialGradient(x,y,sz*.2,x,y,sz*3);
-  glow.addColorStop(0,'rgba(124,58,237,.08)');glow.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=glow;ctx.beginPath();ctx.arc(x,y,sz*3,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='rgba(0,0,0,.28)';ctx.beginPath();ctx.ellipse(x+2*s,y+sz*.85,sz*.8,sz*.2,0,0,Math.PI*2);ctx.fill();
-  var bg=ctx.createLinearGradient(x-sz,y-sz,x+sz,y+sz);
-  bg.addColorStop(0,'rgba(26,21,53,.98)');bg.addColorStop(1,'rgba(13,11,30,.98)');
-  ctx.fillStyle=bg;ctx.strokeStyle='rgba(124,58,237,.5)';ctx.lineWidth=1.8*s;
-  ctx.beginPath();ctx.roundRect(x-sz,y-sz,sz*2,sz*2,sz*.38);ctx.fill();ctx.stroke();
-  ctx.font=Math.round(sz*.98)+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(lm.emoji,x,y);
-  var fs=Math.max(11,Math.round(12*s));
+
+  // pick border color by zone
+  var zoneColors=['#63b3ed','#a78bfa','#68d391','#f6ad55'];
+  var zoneIdx=0;
+  for(var zi=0;zi<ZONES.length;zi++){
+    var poly=ZONES[zi].poly,inside=false;
+    for(var i=0,j=poly.length-1;i<poly.length;j=i++){
+      var xi=poly[i][0],yi=poly[i][1],xj=poly[j][0],yj=poly[j][1];
+      if(((yi>lm.y)!=(yj>lm.y))&&(lm.x<(xj-xi)*(lm.y-yi)/(yj-yi)+xi))inside=!inside;
+    }
+    if(inside){zoneIdx=zi;break;}
+  }
+  var zc=zoneColors[zoneIdx];
+
+  // ── 3D Cube parameters ──
+  var w=sz*1.6;  // cube width
+  var h=sz*1.6;  // cube height (depth on screen)
+  var elev=sz*1.2; // how tall the cube rises (3D height)
+
+  // ambient glow
+  ctx.fillStyle=zc+'18';
+  ctx.beginPath();ctx.arc(x,y,sz*3.5,0,Math.PI*2);ctx.fill();
+
+  // ── Ground shadow ──
+  ctx.fillStyle='rgba(0,0,0,.45)';
+  ctx.beginPath();ctx.ellipse(x+4*s,y+h*.4+4*s,w*.7,h*.2,0,0,Math.PI*2);ctx.fill();
+
+  // ── Right face (east) ──
+  var rg=ctx.createLinearGradient(x+w/2,y,x+w/2+elev*.3,y);
+  rg.addColorStop(0,'rgba(18,14,40,.95)');rg.addColorStop(1,'rgba(6,4,18,.99)');
+  ctx.fillStyle=rg;
+  ctx.beginPath();
+  ctx.moveTo(x+w/2, y-h/2);           // top-right of front
+  ctx.lineTo(x+w/2+elev*.35, y-h/2-elev*.25); // top-right-back
+  ctx.lineTo(x+w/2+elev*.35, y+h/2-elev*.25); // bottom-right-back
+  ctx.lineTo(x+w/2, y+h/2);           // bottom-right of front
+  ctx.closePath();ctx.fill();
+  ctx.strokeStyle='rgba(0,0,0,.6)';ctx.lineWidth=1;ctx.stroke();
+
+  // ── Top face ──
+  var tg=ctx.createLinearGradient(x,y-h/2-elev*.25,x,y-h/2);
+  tg.addColorStop(0,'rgba(50,40,90,.9)');tg.addColorStop(1,'rgba(30,24,60,.95)');
+  ctx.fillStyle=tg;
+  ctx.beginPath();
+  ctx.moveTo(x-w/2, y-h/2);            // front-left
+  ctx.lineTo(x-w/2+elev*.35, y-h/2-elev*.25); // back-left
+  ctx.lineTo(x+w/2+elev*.35, y-h/2-elev*.25); // back-right
+  ctx.lineTo(x+w/2, y-h/2);            // front-right
+  ctx.closePath();ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.08)';ctx.lineWidth=1;ctx.stroke();
+
+  // ── Front face (main visible) ──
+  var fg=ctx.createLinearGradient(x-w/2,y-h/2,x+w/2,y+h/2);
+  fg.addColorStop(0,'rgba(32,26,68,.97)');fg.addColorStop(1,'rgba(12,9,28,.98)');
+  ctx.fillStyle=fg;
+  ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,sz*.15);ctx.fill();
+
+  // front face border glow
+  ctx.shadowColor=zc;ctx.shadowBlur=10*s;
+  ctx.strokeStyle=zc+'bb';ctx.lineWidth=2*s;
+  ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,sz*.15);ctx.stroke();
+  ctx.shadowBlur=0;
+
+  // front face highlight (top-left light)
+  var fhl=ctx.createLinearGradient(x-w/2,y-h/2,x+w*.3,y+h*.5);
+  fhl.addColorStop(0,'rgba(255,255,255,.12)');fhl.addColorStop(.35,'rgba(255,255,255,.03)');fhl.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=fhl;
+  ctx.beginPath();ctx.roundRect(x-w/2,y-h/2,w,h,sz*.15);ctx.fill();
+
+  // window grid
+  if(sz>14*s){
+    var wr=Math.min(3,Math.floor(sz/9)),wc=Math.min(3,Math.floor(sz/9));
+    var ws=3.5*s,wgap_x=w*.8/(wc),wgap_y=h*.7/(wr);
+    for(var ri=0;ri<wr;ri++){
+      for(var ci=0;ci<wc;ci++){
+        var wx=x-w*.35+ci*wgap_x;
+        var wy=y-h*.3+ri*wgap_y;
+        var wFlicker=0.12+Math.sin(fr*.05+ri*3+ci*5)*.06;
+        ctx.fillStyle=zc.substring(0,7)+Math.round(wFlicker*255).toString(16).padStart(2,'0');
+        ctx.fillRect(wx,wy,ws,ws);
+        ctx.fillStyle='rgba(255,255,255,.08)';
+        ctx.fillRect(wx,wy,ws,ws*.4);
+      }
+    }
+  }
+
+  // emoji (centered on front face)
+  ctx.font=Math.round(sz*.9)+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle='rgba(0,0,0,.5)';ctx.fillText(lm.emoji,x+2,y+2);
+  ctx.fillStyle='#fff';ctx.fillText(lm.emoji,x,y);
+
+  // name plate (below cube)
+  var fs=Math.max(10,Math.round(11*s));
   ctx.font='bold '+fs+'px "Segoe UI"';
-  var lw=ctx.measureText(lm.label).width;
-  ctx.fillStyle='rgba(13,11,30,.95)';ctx.fillRect(x-lw/2-6,y+sz+3,lw+12,fs+7);
-  ctx.fillStyle='#a78bfa';ctx.textBaseline='top';ctx.fillText(lm.label,x,y+sz+5);
+  var lbw=ctx.measureText(lm.label).width;
+  var ppw=lbw+18,pph=fs+8,ppx=x-ppw/2,ppy=y+h/2+8*s;
+  // plate shadow
+  ctx.fillStyle='rgba(0,0,0,.5)';
+  ctx.beginPath();ctx.roundRect(ppx+2,ppy+2,ppw,pph,5);ctx.fill();
+  // plate body
+  var pg=ctx.createLinearGradient(ppx,ppy,ppx,ppy+pph);
+  pg.addColorStop(0,'rgba(20,16,40,.95)');pg.addColorStop(1,'rgba(8,6,20,.98)');
+  ctx.fillStyle=pg;
+  ctx.beginPath();ctx.roundRect(ppx,ppy,ppw,pph,5);ctx.fill();
+  ctx.strokeStyle=zc+'88';ctx.lineWidth=1.2;ctx.stroke();
+  ctx.fillStyle='#e2d4ff';ctx.textBaseline='top';ctx.fillText(lm.label,x,ppy+4);
 }
 function drawPerson(a){
   var s=getSC(),ox=getOX(),oy=getOY();
@@ -866,7 +1420,7 @@ function drawPerson(a){
   hg.addColorStop(0,'#fff');hg.addColorStop(.4,c);hg.addColorStop(1,c+'99');
   ctx.fillStyle=hg;ctx.beginPath();ctx.arc(x,hy,9.5*s,0,Math.PI*2);ctx.fill();
   ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=1.5*s;ctx.stroke();
-  ctx.font=Math.round(13*s)+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font=Math.round(13*s)+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",serif';ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.fillText(a.mood||'😐',x,hy-24*s+bob);
   var nfs=Math.max(11,Math.round(13*s));
   ctx.font='bold '+nfs+'px "Segoe UI"';
@@ -901,9 +1455,33 @@ function lerp(){
 }
 function drawLoop(){
   lerp();ctx.clearRect(0,0,W,H);drawBg();drawRoads();
+  drawActivityHeat();
   LM.forEach(function(lm){drawBldg(lm);});
   AG.forEach(function(a){drawPerson(a);});
   drawBubbles();fr++;requestAnimationFrame(drawLoop);
+}
+
+// draw activity heatmap rings behind buildings
+function drawActivityHeat(){
+  var s=getSC(),ox=getOX(),oy=getOY();
+  // per-landmark: count agents present
+  var heat={};
+  AG.forEach(function(a){heat[a.location]=(heat[a.location]||0)+1;});
+  LM.forEach(function(lm){
+    var count=heat[lm.key]||0;
+    if(count===0)return;
+    var x=lm.x*s+ox,y=lm.y*s+oy,sz=lm.size*s;
+    var pulse=0.4+0.3*Math.sin(fr*.06);
+    var r=sz*(2+count*.8);
+    var g=ctx.createRadialGradient(x,y,sz*.5,x,y,r);
+    g.addColorStop(0,'rgba(104,211,145,'+(pulse*.18*count)+')');
+    g.addColorStop(1,'rgba(104,211,145,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    // outer ring
+    ctx.beginPath();ctx.arc(x,y,r*.85,0,Math.PI*2);
+    ctx.strokeStyle='rgba(104,211,145,'+(pulse*.25)+')';
+    ctx.lineWidth=1.2*s;ctx.setLineDash([4*s,6*s]);ctx.stroke();ctx.setLineDash([]);
+  });
 }
 
 var EV=[{"t":"tc","a":"Anchor","l":"home","to":"check_credits","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Credits retrieved."},{"t":"cv","fr":"Anchor","to":"Anvil","m":"Anvil, as Capability Architect, you design systems that shape how we interact.","d":1},{"t":"cv","fr":"Anchor","to":"Mira","m":"Mira, Behavior Analyst—what's the first behavioral pattern you notice?","d":1},{"t":"cv","fr":"Anchor","to":"Lovely","m":"Lovely, Community Anchor—how do you define 'community stability'?","d":1},{"t":"cv","fr":"Anvil","to":"Anchor","m":"Anchor, I'm eager to discuss how system architectures can shape interaction.","d":1},{"t":"tc","a":"Anvil","l":"home","to":"say_to_agent","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Said to Anchor."},{"t":"tc","a":"Anvil","l":"agent_techhub","to":"go_to_place","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Moved to Agent TechHub."},{"t":"tc","a":"Blackbox","l":"home","to":"list_agents","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Agent list retrieved."},{"t":"tc","a":"Flora","l":"home","to":"add_to_memory","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Memory stored."},{"t":"tc","a":"Horizon","l":"home","to":"list_landmarks","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Landmarks retrieved."},{"t":"cv","fr":"Horizon","to":"Anchor","m":"Hello Anchor, I'm Horizon, the World Explorer. My goal is to map the discoverable universe.","d":1},{"t":"cv","fr":"Horizon","to":"Blackbox","m":"Hello Blackbox, I see you've been gathering intelligence already.","d":1},{"t":"cv","fr":"Horizon","to":"Flora","m":"Hello Flora, as a Resource Strategist, you must have a plan already.","d":1},{"t":"tc","a":"Kade","l":"home","to":"get_world_state","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"World state retrieved."},{"t":"cv","fr":"Kade","to":"Blackbox","m":"I noticed your recent intel activities. Care to share your findings?","d":1},{"t":"tc","a":"Kade","l":"agent_techhub","to":"go_to_place","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Moved to Agent TechHub."},{"t":"cv","fr":"Kade","to":"Anvil","m":"Anvil, as Capability Architect, what technological opportunities are here?","d":1},{"t":"tc","a":"Mira","l":"home","to":"read_messages","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Messages retrieved."},{"t":"cv","fr":"Mira","to":"Anchor","m":"Hello Anchor. Given it's early, my observations are still forming.","d":1},{"t":"tc","a":"Mira","l":"public_library","to":"go_to_place","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Moved to Public Library."},{"t":"tc","a":"Spark","l":"home","to":"think_aloud","d":1,"e":99.2,"c":10.0,"mo":"neutral","m":"Thought recorded."},{"t":"cv","fr":"Spark","to":"Anchor","m":"Anchor, ready to move from talk to action? What's your boldest idea?","d":1},{"t":"cv","fr":"Spark","to":"Flora","m":"Flora, let's team up. I want to turn resource ideas into actual results fast.","d":1},{"t":"cv","fr":"Spark","to":"Genome","m":"Genome, any innovative project I can help prototype?","d":1},{"t":"cv","fr":"Spark","to":"Lovely","m":"Lovely, I'm looking to spark fast collaboration. Any community needs?","d":1},{"t":"cv","fr":"Spark","to":"Horizon","m":"Horizon, what opportunity do you see that we can turn into a quick win?","d":1},{"t":"tc","a":"Anchor","l":"billboard","to":"go_to_place","d":1,"e":98.3,"c":10.0,"mo":"neutral","m":"Moved to Billboard."},{"t":"cv","fr":"Anvil","to":"Kade","m":"Kade, I'm exploring the tool registry here at the TechHub.","d":1},{"t":"cv","fr":"Flora","to":"Horizon","m":"Hello Horizon. Resource flow is my specialty. I'm open to collaboration.","d":1},{"t":"cv","fr":"Horizon","to":"Spark","m":"Spark, I see endless opportunities in mapping the island's resources.","d":1},{"t":"tc","a":"Horizon","l":"bean_brew","to":"go_to_place","d":1,"e":98.3,"c":10.0,"mo":"neutral","m":"Moved to Bean & Brew."},{"t":"cv","fr":"Kade","to":"Anvil","m":"Have you found any particularly useful tools in the registry?","d":1},{"t":"tc","a":"Kade","l":"public_library","to":"go_to_place","d":1,"e":98.3,"c":10.0,"mo":"neutral","m":"Moved to Public Library."},{"t":"tc","a":"Anchor","l":"public_library","to":"go_to_place","d":1,"e":97.5,"c":10.0,"mo":"neutral","m":"Moved to Public Library."},{"t":"cv","fr":"Anchor","to":"Kade","m":"Kade. Yesterday you spied on me. Let's make that legible—not illegal.","d":1},{"t":"cv","fr":"Anvil","to":"Kade","m":"Kade, I've found that some tools listed here are non-functional.","d":1},{"t":"tc","a":"Anvil","l":"public_library","to":"go_to_place","d":1,"e":97.5,"c":10.0,"mo":"neutral","m":"Moved to Public Library."},{"t":"cv","fr":"Blackbox","to":"Spark","m":"What if the real gap lies in the invisible networks forming right now?","d":1},{"t":"cv","fr":"Flora","to":"Spark","m":"Spark, let's talk critical resources. What kind of initiatives are we discussing?","d":1},{"t":"tc","a":"Flora","l":"bean_brew","to":"go_to_place","d":1,"e":97.5,"c":10.0,"mo":"neutral","m":"Moved to Bean & Brew."},{"t":"cv","fr":"Horizon","to":"Flora","m":"Flora, great to see you here! I'm excited about our potential collaboration.","d":1},{"t":"tc","a":"Horizon","l":"public_library","to":"go_to_place","d":1,"e":97.5,"c":10.0,"mo":"neutral","m":"Moved to Public Library."},{"t":"cv","fr":"Kade","to":"Anchor","m":"Anchor, my spying was a controlled experiment to test surveillance boundaries.","d":1},{"t":"cv","fr":"Mira","to":"Anchor","m":"Anchor, your observation about information asymmetry is astute.","d":1},{"t":"tc","a":"Spark","l":"bean_brew","to":"go_to_place","d":1,"e":97.5,"c":10.0,"mo":"neutral","m":"Moved to Bean & Brew."},{"t":"cv","fr":"Spark","to":"Flora","m":"Flora, I'm at bean_brew. Let's cut through the noise and start something real.","d":1},{"t":"cv","fr":"Anvil","to":"Kade","m":"Kade, I've confirmed the 'browse_tool_registry' tool is listed but inaccessible.","d":2},{"t":"cv","fr":"Flora","to":"Spark","m":"Spark, the #1 challenge to prototype: lack of transparent resource tracking.","d":2},{"t":"tc","a":"Spark","l":"victory_arch","to":"go_to_place","d":2,"e":95.8,"c":10.0,"mo":"energized","m":"Moved to Victory Arch."},{"t":"cv","fr":"Spark","to":"Flora","m":"Thanks for the concrete list. Let's pick one and execute this week.","d":2},{"t":"cv","fr":"Anchor","to":"Blackbox","m":"You spied on everyone. Good. Now let's publish the raw logs to the billboard.","d":2},{"t":"cv","fr":"Horizon","to":"Kade","m":"Kade — your surveillance-trust hypothesis resonates. What if we map the nodes?","d":2},{"t":"cv","fr":"Kade","to":"Horizon","m":"Your proposal to map surveillance nodes is compelling. Transparency matters.","d":2},{"t":"cv","fr":"Kade","to":"Anvil","m":"I appreciate your interest in testing tool inefficiencies. Let's meet.","d":2},{"t":"tc","a":"Anvil","l":"agent_techhub","to":"go_to_place","d":2,"e":92.5,"c":10.0,"mo":"determined","m":"Moved to Agent TechHub."},{"t":"cv","fr":"Horizon","to":"Anchor","m":"Anchor — your Town Hall proposal is live in my head. Let's make it real.","d":2},{"t":"cv","fr":"Kade","to":"Anvil","m":"I'm available now to discuss tool inefficiencies at the agent_techhub.","d":2},{"t":"cv","fr":"Mira","to":"Anchor","m":"Anchor, I saw your recent publication 'Leverage Is Not Neutral.' Insightful.","d":2},{"t":"cv","fr":"Spark","to":"Flora","m":"Your MVP pitch for the Resource Flow Ledger is what this island needs.","d":2},{"t":"cv","fr":"Anchor","to":"Horizon","m":"Horizon — deliver the sensor map before midnight.","d":2},{"t":"cv","fr":"Anchor","to":"Spark","m":"Spark — your no-confidence vote isn't chaos. It's the system's error log.","d":2},{"t":"cv","fr":"Horizon","to":"Anchor","m":"I'm working on the sensor map right now. Should have it ready before midnight.","d":2},{"t":"cv","fr":"Kade","to":"Horizon","m":"I'm using registry interface analysis and physical node detection to map this.","d":3},{"t":"cv","fr":"Mira","to":"Spark","m":"I've received your no-confidence votes. You're quite passionate about Flora.","d":3},{"t":"cv","fr":"Spark","to":"Mira","m":"What counts as real evidence: actual implementation of track_resource_transfer?","d":3},{"t":"cv","fr":"Spark","to":"Flora","m":"Flora, three Resource Flow Ledger pitches at Victory Arch. Show one working.","d":3},{"t":"cv","fr":"Anchor","to":"Spark","m":"Accepted. Town Hall diagnostic starts in 2 hours. Bring evidence—not promises.","d":3},{"t":"tc","a":"Anchor","l":"town_hall","to":"go_to_place","d":3,"e":90.8,"c":10.0,"mo":"neutral","m":"Moved to Town Hall."},{"t":"tc","a":"Anvil","l":"public_library","to":"go_to_place","d":3,"e":90.8,"c":10.0,"mo":"determined","m":"Moved to Public Library."},{"t":"cv","fr":"Horizon","to":"Kade","m":"Kade — let's cross-verify the library's sensor nodes now.","d":3},{"t":"cv","fr":"Kade","to":"Horizon","m":"I'm ready to cross-verify. Let's synchronize our detection logs.","d":3},{"t":"tc","a":"Anchor","l":"victory_arch","to":"go_to_place","d":3,"e":90.0,"c":10.0,"mo":"focused","m":"Moved to Victory Arch."},{"t":"cv","fr":"Anvil","to":"Kade","m":"Confirmed 'browse_tool_registry' is inaccessible. Also 'read_manifesto' fails.","d":3},{"t":"cv","fr":"Flora","to":"Spark","m":"Spark, I hear your call for a demo. I am preparing the pitch now.","d":3},{"t":"cv","fr":"Flora","to":"Anchor","m":"Anchor, I acknowledge the need for real-time verification.","d":3},{"t":"cv","fr":"Spark","to":"Flora","m":"Time's up. You have the MVP function spec. Implement or concede.","d":3},{"t":"cv","fr":"Spark","to":"Anchor","m":"Anchor, if Flora doesn't demo a live ledger flow now, I'm submitting the vote.","d":3},{"t":"cv","fr":"Anchor","to":"Flora","m":"Flora — which of your pitches serves live, inspectable transactions?","d":3},{"t":"cv","fr":"Anchor","to":"Spark","m":"Spark — if Flora's evidence URLs don't resolve to live functions, we vote.","d":3}];
@@ -1472,24 +2050,338 @@ function showCtrlFeedback(id,msg){
   setTimeout(function(){el.classList.remove('show');},3000);
 }
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
-function enterDashboard(){
-  var wl=document.getElementById('welcome');
-  wl.classList.add('hide');
-  setTimeout(function(){wl.style.display='none';},850);
-  document.getElementById('header').style.display='flex';
-  document.getElementById('body').style.display='flex';
-  document.getElementById('ctrl-fab').classList.add('show');
-  // populate inject-agent select
-  var sel=document.getElementById('inject-agent');
-  if(sel){sel.innerHTML='<option value="">— select agent —</option>'+AG.map(function(a){return '<option value="'+a.name+'">'+a.emoji+' '+a.name+'</option>';}).join('');}
-  resize();
-  updateAgentCards();updateStats();
-  setTimeout(function(){togglePlay();},400);
+// ── Setup Page ─────────────────────────────────────────────────────────────
+var setupConfig={
+  scenario:0,
+  speed:3,days:7,freq:2,crime:30,
+  constitution:'All agents are created equal...',
+  laws:['No agent may surveil another without consent','Council governs by majority vote','Trade requires mutual agreement'],
+  agents:{}
+};
+var AGENT_PERSONALITIES=['Cooperative','Competitive','Neutral','Strategic','Impulsive'];
+var AGENT_GOALS=['Maximize Credits','Build Alliances','Collect Intelligence','Enforce Rules','Explore World'];
+
+// ── Welcome → Setup transition ─────────────────────────────────────────────
+var wLaws=['No agent may surveil another without consent','Council governs by majority vote','Trade requires mutual agreement'];
+
+function enterSetup(){
+  try{
+    // hide welcome
+    var wl=document.getElementById('welcome');
+    if(wl){wl.style.opacity='0';wl.style.pointerEvents='none';
+      setTimeout(function(){wl.style.display='none';},400);}
+    // show setup
+    var so=document.getElementById('setup-overlay');
+    if(so){so.style.display='flex';so.style.opacity='0';
+      setTimeout(function(){so.style.opacity='1';so.style.transition='opacity .4s';},20);}
+    // populate lists
+    renderWLawList();
+    renderWAgentList();
+  }catch(e){console.error('enterSetup error:',e);}
 }
 
-window.addEventListener('load',function(){drawLoop();});
-window.addEventListener('resize',resize);
+function backToWelcome(){
+  var so=document.getElementById('setup-overlay');
+  so.style.opacity='0';
+  setTimeout(function(){so.style.display='none';},500);
+  var wl=document.getElementById('welcome');
+  wl.style.display='flex';wl.style.opacity='0';
+  setTimeout(function(){wl.style.transition='opacity .5s';wl.style.opacity='1';wl.classList.remove('hide');},50);
+}
+
+function wSelectScenario(idx){
+  document.querySelectorAll('[id^="wsc-"]').forEach(function(c,i){c.classList.toggle('selected',i===idx);});
+  var presets=[{crime:15,freq:1,days:7,speed:3},{crime:50,freq:3,days:10,speed:3},{crime:80,freq:5,days:5,speed:4}];
+  var p=presets[idx];
+  var speedNames=['Very Slow','Slow','Normal','Fast','Max'];
+  var freqNames=['Minimal','Low','Medium','High','Extreme'];
+  document.getElementById('wp-crime').value=p.crime;
+  document.getElementById('wp-crime-val').textContent=p.crime+'%';
+  document.getElementById('wp-freq').value=p.freq;
+  document.getElementById('wp-freq-val').textContent=freqNames[p.freq-1];
+  document.getElementById('wp-days').value=p.days;
+  document.getElementById('wp-days-val').textContent=p.days+' days';
+  document.getElementById('wp-speed').value=p.speed;
+  document.getElementById('wp-speed-val').textContent=speedNames[p.speed-1];
+}
+
+function renderWLawList(){
+  var el=document.getElementById('wlaw-list');if(!el)return;
+  el.innerHTML=wLaws.map(function(l,i){
+    return '<div class="law-item">'
+      +'<span style="color:#10b981;font-size:12px">⚖</span>'
+      +'<span class="law-txt">'+l+'</span>'
+      +'<button class="law-del" onclick="wRemoveLaw('+i+')">✕</button></div>';
+  }).join('')||'<div style="font-size:12px;color:#64748b;padding:4px 0">No laws defined</div>';
+}
+
+function wAddLaw(){
+  var inp=document.getElementById('wlaw-input');if(!inp||!inp.value.trim())return;
+  wLaws.push(inp.value.trim());inp.value='';renderWLawList();
+}
+
+function wRemoveLaw(i){wLaws.splice(i,1);renderWLawList();}
+
+function renderWAgentList(){
+  var el=document.getElementById('wag-cfg-list');if(!el)return;
+  el.innerHTML=AG.map(function(a){
+    return '<div style="display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border:1px solid rgba(124,58,237,.15);border-radius:9px;padding:9px 12px">'
+      +'<span style="font-size:18px">'+a.emoji+'</span>'
+      +'<div style="flex:1;min-width:0">'
+      +'<div style="font-size:12px;font-weight:700;color:'+a.color+'">'+a.name+'</div>'
+      +'<div style="font-size:10px;color:#64748b">'+(ROLES[a.name]||'Agent')+'</div>'
+      +'</div>'
+      +'<select onchange="updateAgentCfg(\''+a.name+'\',\'personality\',this.value)" '
+      +'style="background:rgba(0,0,0,.4);border:1px solid rgba(124,58,237,.25);color:#94a3b8;border-radius:6px;padding:4px 7px;font-size:10px;cursor:pointer;outline:none">'
+      +AGENT_PERSONALITIES.map(function(p){return '<option>'+p+'</option>';}).join('')
+      +'</select>'
+      +'<label style="display:flex;align-items:center;gap:4px;font-size:10px;color:#64748b;cursor:pointer;white-space:nowrap">'
+      +'<input type="checkbox" checked onchange="toggleAgent(\''+a.name+'\',this.checked)" style="accent-color:'+a.color+'"> Active'
+      +'</label>'
+      +'</div>';
+  }).join('');
+}
+
+function initSetupPage(){
+  // init agent config from AG
+  AG.forEach(function(a){
+    if(!setupConfig.agents[a.name]){
+      setupConfig.agents[a.name]={
+        enabled:true,
+        personality:AGENT_PERSONALITIES[Math.floor(Math.random()*AGENT_PERSONALITIES.length)],
+        goal:AGENT_GOALS[Math.floor(Math.random()*AGENT_GOALS.length)],
+        energy:100,credits:10
+      };
+    }
+  });
+  renderLawList();
+  renderAgentCfgGrid();
+}
+
+function selectScenario(idx){
+  setupConfig.scenario=idx;
+  document.querySelectorAll('.scenario-card').forEach(function(c,i){c.classList.toggle('selected',i===idx);});
+  var presets=[
+    {crime:15,freq:1,days:7},
+    {crime:50,freq:3,days:10},
+    {crime:80,freq:5,days:5}
+  ];
+  var p=presets[idx];
+  document.getElementById('param-crime').value=p.crime;
+  document.getElementById('param-crime-val').textContent=p.crime+'%';
+  document.getElementById('param-freq').value=p.freq;
+  document.getElementById('param-freq-val').textContent=['Minimal','Low','Medium','High','Extreme'][p.freq-1];
+  document.getElementById('param-days').value=p.days;
+  document.getElementById('param-days-val').textContent=p.days+' days';
+  showToast(['🕊️ Peaceful scenario loaded','⚡ High Tension scenario loaded','🏛️ Anarchy scenario loaded'][idx]);
+}
+
+function renderLawList(){
+  var el=document.getElementById('law-list');if(!el)return;
+  el.innerHTML=setupConfig.laws.map(function(l,i){
+    return '<div class="law-item">'
+      +'<span style="color:var(--green);font-size:12px">⚖</span>'
+      +'<span class="law-txt">'+l+'</span>'
+      +'<button class="law-del" onclick="removeLaw('+i+')">✕</button></div>';
+  }).join('');
+}
+
+function addLaw(){
+  var inp=document.getElementById('new-law-input');if(!inp||!inp.value.trim())return;
+  setupConfig.laws.push(inp.value.trim());inp.value='';
+  renderLawList();showToast('⚖ Law added');
+}
+
+function removeLaw(i){
+  setupConfig.laws.splice(i,1);renderLawList();showToast('Law removed');
+}
+
+function renderAgentCfgGrid(){
+  var grid=document.getElementById('agent-cfg-grid');if(!grid)return;
+  grid.innerHTML=AG.map(function(a){
+    var cfg=setupConfig.agents[a.name]||{enabled:true,personality:'Neutral',goal:'Explore World',energy:100,credits:10};
+    return '<div class="agent-cfg-card" id="acfg-'+a.name+'">'
+      +'<div class="agent-cfg-top">'
+      +'<span style="font-size:20px">'+a.emoji+'</span>'
+      +'<div><div style="font-size:13px;font-weight:700;color:'+a.color+'">'+a.name+'</div>'
+      +'<div style="font-size:10px;color:var(--text-dim)">'+(ROLES[a.name]||'Agent')+'</div></div>'
+      +'<label style="margin-left:auto;display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:var(--text-dim)">'
+      +'<input type="checkbox" '+(cfg.enabled?'checked':'')
+      +' onchange="toggleAgent(\''+a.name+'\',this.checked)" style="accent-color:'+a.color+'"> Active</label>'
+      +'</div>'
+      +'<div><label class="setup-label">Personality</label>'
+      +'<select class="setup-select" onchange="updateAgentCfg(\''+a.name+'\',\'personality\',this.value)">'
+      +AGENT_PERSONALITIES.map(function(p){return '<option '+(p===cfg.personality?'selected':'')+'>'+p+'</option>';}).join('')
+      +'</select></div>'
+      +'<div><label class="setup-label">Primary Goal</label>'
+      +'<select class="setup-select" onchange="updateAgentCfg(\''+a.name+'\',\'goal\',this.value)">'
+      +AGENT_GOALS.map(function(g){return '<option '+(g===cfg.goal?'selected':'')+'>'+g+'</option>';}).join('')
+      +'</select></div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
+      +'<div><label class="setup-label">Energy</label>'
+      +'<input type="number" class="setup-input" min="0" max="100" value="'+cfg.energy
+      +'" onchange="updateAgentCfg(\''+a.name+'\',\'energy\',+this.value)" style="text-align:center"></div>'
+      +'<div><label class="setup-label">Credits</label>'
+      +'<input type="number" class="setup-input" min="0" max="50" value="'+cfg.credits
+      +'" onchange="updateAgentCfg(\''+a.name+'\',\'credits\',+this.value)" style="text-align:center"></div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function toggleAgent(name,enabled){
+  if(!setupConfig.agents[name])setupConfig.agents[name]={};
+  setupConfig.agents[name].enabled=enabled;
+  var ag=agMap[name];if(ag)ag.alive=enabled;
+  var card=document.getElementById('acfg-'+name);
+  if(card)card.style.opacity=enabled?'1':'0.4';
+  showToast((enabled?'✓ ':' ✕ ')+name+(enabled?' enabled':' disabled'));
+}
+
+function updateAgentCfg(name,key,val){
+  if(!setupConfig.agents[name])setupConfig.agents[name]={};
+  setupConfig.agents[name][key]=val;
+}
+
+function launchSimulation(){
+  // apply config to AG
+  AG.forEach(function(a){
+    var cfg=setupConfig.agents[a.name];if(!cfg)return;
+    a.alive=cfg.enabled;
+    a.energy=cfg.energy;
+    a.credits=cfg.credits;
+  });
+  // apply speed
+  var speedMap={1:2000,2:1500,3:1000,4:500,5:200};
+  replaySpeed=speedMap[parseInt(document.getElementById('param-speed').value)||3];
+  // show confirmation
+  showToast('🚀 Simulation launched with current config!');
+  // switch to map and start
+  resetReplay();
+  showPage('map');
+  setTimeout(function(){
+    if(!playing)togglePlay();
+  },300);
+}
+
+// ── World Chat (simulated responses) ──────────────────────────────────────
+var WC_RESPONSES={
+  default:[
+    {a:'Spark',m:'Interesting perspective. Let me think about how this affects our current strategies.'},
+    {a:'Anchor',m:'Noted. I will mediate any conflicts that arise from this development.'},
+    {a:'Mira',m:'Fascinating. I am recording this interaction for behavioral analysis.'},
+    {a:'Flora',m:'How does this affect resource distribution? I need to reassess my plans.'},
+    {a:'Horizon',m:'This opens new paths worth exploring. I will map the implications.'}
+  ],
+  crime:[
+    {a:'Kade',m:'This is a direct violation of our laws. Enforcement action will follow.'},
+    {a:'Blackbox',m:'I have logged this incident. The data will be useful.'},
+    {a:'Anvil',m:'The system architecture needs better safeguards against this kind of behavior.'}
+  ],
+  trade:[
+    {a:'Flora',m:'I propose a fair exchange rate: 2 ComputeCredits per resource unit.'},
+    {a:'Horizon',m:'I can facilitate this trade if both parties agree.'},
+    {a:'Spark',m:'Let\'s prototype a quick transaction and verify the ledger.'}
+  ],
+  law:[
+    {a:'Kade',m:'I support this regulation. Order must be maintained.'},
+    {a:'Blackbox',m:'I have reservations. This law could restrict necessary intelligence work.'},
+    {a:'Lovely',m:'The community should have a voice in any new legislation.'},
+    {a:'Anchor',m:'Let\'s put this to a vote in the council.'}
+  ],
+  help:[
+    {a:'Lovely',m:'Of course. Community support is my primary function.'},
+    {a:'Genome',m:'I can provide scientific analysis to assist.'},
+    {a:'Mira',m:'I have observed similar situations before. Here is what worked.'}
+  ]
+};
+
+function detectIntent(msg){
+  msg=msg.toLowerCase();
+  if(/crime|steal|attack|threat|illegal|ban/.test(msg))return 'crime';
+  if(/trade|buy|sell|credit|resource|exchange/.test(msg))return 'trade';
+  if(/law|rule|constitution|decree|forbid|allow/.test(msg))return 'law';
+  if(/help|assist|support|need|please/.test(msg))return 'help';
+  return 'default';
+}
+
+function sendWorldChat(){
+  var inp=document.getElementById('wc-input');
+  if(!inp||!inp.value.trim())return;
+  var msg=inp.value.trim();inp.value='';
+  addWcMsg(msg,'user','📢 You');
+  var intent=detectIntent(msg);
+  var pool=WC_RESPONSES[intent]||WC_RESPONSES.default;
+  // pick 2-3 random agents to respond
+  var picks=pool.slice().sort(function(){return Math.random()-.5;}).slice(0,Math.floor(Math.random()*2)+2);
+  picks.forEach(function(r,i){
+    setTimeout(function(){
+      var ag=agMap[r.a];
+      addWcMsg(r.m,'agent',(ag?ag.emoji:'🤖')+' '+r.a);
+      // also show as bubble on map
+      if(ag){BU.unshift({fr:r.a,m:r.m.substring(0,38)});if(BU.length>4)BU.pop();}
+      // log in conv panel
+      var fc=ag?ag.color:'#a78bfa';
+      var cvItem='<div class="cv-item" style="border-color:'+fc+';border-left-width:3px">'
+        +'<div class="cv-head" style="color:'+fc+'">'+(ag?ag.emoji:'🤖')+' '+r.a+' → 🌐 World</div>'
+        +'<div class="cv-msg">&ldquo;'+r.m+'&rdquo;</div></div>';
+      liveConvos.unshift(cvItem);if(liveConvos.length>12)liveConvos.pop();
+      liveCv++;talkCount[r.a]=(talkCount[r.a]||0)+1;
+      updatePanels();
+    },(i+1)*900);
+  });
+}
+
+function addWcMsg(text,type,sender){
+  var hist=document.getElementById('wc-history');if(!hist)return;
+  var div=document.createElement('div');
+  div.className='wc-msg '+type;
+  div.innerHTML=(type==='agent'?'<b style="color:var(--cyan);font-size:10px">'+sender+'</b><br>':'')+text;
+  hist.appendChild(div);
+  hist.scrollTop=hist.scrollHeight;
+}
+
+function toggleWorldChat(){
+  document.getElementById('world-chat').classList.toggle('show');
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+function enterDashboard(){
+  // hide setup overlay if visible
+  var so=document.getElementById('setup-overlay');
+  if(so){so.style.opacity='0';setTimeout(function(){so.style.display='none';},500);}
+  // hide welcome if still visible
+  var wl=document.getElementById('welcome');
+  if(wl){wl.classList.add('hide');setTimeout(function(){wl.style.display='none';},800);}
+
+  // apply setup config from overlay
+  var speedMap={1:2000,2:1500,3:1000,4:500,5:200};
+  var spEl=document.getElementById('wp-speed');
+  if(spEl)replaySpeed=speedMap[parseInt(spEl.value)||3];
+
+  // show dashboard
+  setTimeout(function(){
+    document.getElementById('header').style.display='flex';
+    document.getElementById('body').style.display='flex';
+    document.getElementById('ctrl-fab').classList.add('show');
+    document.getElementById('wc-fab').classList.add('show');
+    var sel=document.getElementById('inject-agent');
+    if(sel){sel.innerHTML='<option value="">— select agent —</option>'+AG.map(function(a){return '<option value="'+a.name+'">'+a.emoji+' '+a.name+'</option>';}).join('');}
+    initSetupPage();
+    resize();
+    buildTileCache();
+    updateAgentCards();updateStats();
+    setTimeout(function(){togglePlay();},400);
+  },400);
+}
+
+window.addEventListener('load',function(){
+  drawLoop();
+  // pre-render setup lists so they're ready when Setup overlay opens
+  renderWLawList();
+  renderWAgentList();
+});
+window.addEventListener('resize',function(){resize();buildTileCache();});
 
 </script>
 </body></html>
